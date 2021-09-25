@@ -18,15 +18,38 @@
             display: inline-block;
 
         }
+
+        .img {
+            width: 200px;
+            height: auto;
+        }
+
+        li {
+            background: rgb(202, 199, 194);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px auto;
+            list-style-type: none;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        li.fav {
+            background: yellow;
+        }
     </style>
 </head>
 
 <body>
     <h1>Hello vue</h1>
     <div id="app">
+        <!-- attribut binding -->
+        <a v-bind:href="url">Pathum portfolio</a>
         <div v-if="showBooks">
             <ul>
-                <li v-for="book in books">
+                <li v-for="book in filteredBooks" :class="{ fav: book.isFav }" @click="toggleClick(book)">
+                    <img class="img" :src="book.img" :alt="book.title">
                     <h2>{{book.title}}</h2>
                     <p> {{book.author}}</p>
                 </li>
